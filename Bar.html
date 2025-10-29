@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mokkos - Барная карта</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #a97458;
+      --primary-dark: #8a5c43;
+      --secondary: #3e2f1c;
+      --light: #f8f4f0;
+      --accent: #d4a86a;
+      --gold: #d4af37;
+      --text: #3e2f1c;
+      --white: #ffffff;
+      --gray: #e8e1d9;
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png') repeat;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header styles */
+    header {
+      background: rgba(62, 47, 28, 0.95);
+      color: var(--white);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transform-origin: left center;
+      transition: var(--transition);
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    
+    .logo-img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--gold) 0%, var(--accent) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary-dark);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    }
+    
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+      position: relative;
+    }
+    
+    .logo-text span {
+      color: var(--gold);
+      position: relative;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+    
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: var(--transition);
+      position: relative;
+      padding: 5px 0;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--gold);
+      transition: var(--transition);
+    }
+    
+    nav a:hover {
+      color: var(--gold);
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    .btn {
+      background: linear-gradient(to right, var(--accent), var(--gold));
+      color: var(--secondary);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 15px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    /* Hero section */
+    .bar-hero {
+      background: linear-gradient(rgba(62, 47, 28, 0.85), rgba(62, 47, 28, 0.85)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 50px;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    /* Bar Section */
+    .bar-section {
+      padding: 0 0 80px;
+      position: relative;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      margin-bottom: 40px;
+      position: relative;
+      color: var(--secondary);
+      z-index: 1;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--gold));
+      margin: 15px auto;
+      border-radius: 2px;
+    }
+    
+    .category-section {
+      margin-bottom: 60px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .category-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--gold));
+    }
+    
+    .category-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .category-title i {
+      color: var(--gold);
+      font-size: 28px;
+    }
+    
+    .bar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 20px;
+    }
+    
+    .bar-item {
+      background: rgba(248, 244, 240, 0.7);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+      border-left: 4px solid var(--gold);
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    
+    .bar-item.animate {
+      animation: fadeUp 0.6s forwards;
+    }
+    
+    /* Исправлено: добавлена анимация fadeUp */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .bar-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      background: var(--white);
+    }
+    
+    .drink-name {
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--secondary);
+      flex: 1;
+    }
+    
+    .drink-price {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 18px;
+      min-width: 100px;
+      text-align: right;
+    }
+    
+    .drink-desc {
+      font-size: 14px;
+      color: #777;
+      margin-top: 5px;
+      font-style: italic;
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(to right, var(--secondary), var(--primary-dark));
+      color: var(--white);
+      padding: 60px 0 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/black-paper.png');
+      opacity: 0.1;
+      z-index: 0;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .footer-column h3 {
+      font-size: 24px;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 15px;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .contact-item i {
+      color: var(--gold);
+      font-size: 20px;
+      margin-top: 5px;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+    }
+    
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.1);
+      color: var(--gold);
+      font-size: 20px;
+      transition: var(--transition);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    
+    .social-icon:hover {
+      background-color: var(--gold);
+      color: var(--secondary);
+      transform: translateY(-5px);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 20px;
+    }
+    
+    .footer-links li::before {
+      content: '•';
+      color: var(--gold);
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    
+    .footer-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-block;
+    }
+    
+    .footer-links a:hover {
+      color: var(--gold);
+      transform: translateX(5px);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Floating reservation button */
+    .floating-reservation {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--gold), var(--accent));
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 999;
+      cursor: pointer;
+      transition: var(--transition);
+      animation: pulse 2s infinite;
+    }
+    
+    .floating-reservation:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 992px) {
+      .bar-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+      
+      .section-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-content h1 {
+        font-size: 3rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .category-title {
+        font-size: 1.8rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .bar-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .logo-text {
+        font-size: 24px;
+      }
+      
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      
+      .category-title {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <div class="logo-img">M</div>
+        <div class="logo-text">Mok<span>kos</span></div>
+      </div>
+      
+      <nav>
+        <ul>
+          <li><a href="index.html#menu">Меню</a></li>
+          <li><a href="#bar">Бар</a></li>
+          <li><a href="index.html#gallery">Интерьер</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header-actions">
+        <button class="btn" id="reserve-btn">Забронировать столик</button>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="bar-hero">
+    <div class="hero-content">
+      <h1>Барная карта</h1>
+      <p>Искусство вкуса в каждом глотке</p>
+    </div>
+  </section>
+  
+  <!-- Bar Section -->
+  <section class="bar-section" id="bar">
+     <div class="container">
+      <h2 class="section-title">Наши напитки</h2>
+      
+      <!-- Коктейли -->
+      <div class="category-section">
+        <h3 class="category-title"><i class="fas fa-cocktail"></i> Авторские коктейли</h3>
+        <div class="bar-grid">
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Mokkos</div>
+              <div class="drink-desc">Виски, кокос, лимон, красное вино, абсент</div>
+            </div>
+            <div class="drink-price">3,500 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Burning Lamborghini</div>
+              <div class="drink-desc">Кофейный ликер, самбука, бейлис, блю кюрасао</div>
+            </div>
+            <div class="drink-price">4,000 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Tiramisu Martini</div>
+              <div class="drink-desc">Мартини, бейлис, кофейный ликер, эспрессо</div>
+            </div>
+            <div class="drink-price">4,000 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Spiced Maple Paloma</div>
+              <div class="drink-desc">Текила, грейпфрутовый сок, лайм, кленовый сироп</div>
+            </div>
+            <div class="drink-price">3,200 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Fire Fensi</div>
+              <div class="drink-desc">Джин, вермут, кампари, апельсиновый сок</div>
+            </div>
+            <div class="drink-price">3,200 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Jack Frost</div>
+              <div class="drink-desc">Джин, блю кюрасао, кокосовое молоко, ананасовый сок</div>
+            </div>
+            <div class="drink-price">2,500 ₸</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Шоты -->
+      <div class="category-section">
+        <h3 class="category-title"><i class="fas fa-glass-whiskey"></i> Шоты</h3>
+        <div class="bar-grid">
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">B-52</div>
+              <div class="drink-desc">Кофейный ликер, бейлис, трипл сек</div>
+            </div>
+            <div class="drink-price">3,000 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">B-55</div>
+              <div class="drink-desc">Кофейный ликер, бейлис, абсент</div>
+            </div>
+            <div class="drink-price">3,000 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Hiroshima</div>
+              <div class="drink-desc">Самбука, бейлис, абсент, гренадин</div>
+            </div>
+            <div class="drink-price">3,500 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Red Dog</div>
+              <div class="drink-desc">Текила, самбука, табаско</div>
+            </div>
+            <div class="drink-price">2,500 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Clouds</div>
+              <div class="drink-desc">Текила, блю кюрасао, бейлис, абсент</div>
+            </div>
+            <div class="drink-price">4,000 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Hurricane</div>
+              <div class="drink-desc">Виски, трипл сек, ягермейстер</div>
+            </div>
+            <div class="drink-price">3,500 ₸</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Ликеры -->
+      <div class="category-section">
+        <h3 class="category-title"><i class="fas fa-wine-bottle"></i> Ликеры</h3>
+        <div class="bar-grid">
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Jägermeister</div>
+              <div class="drink-desc">Травяной ликер</div>
+            </div>
+            <div class="drink-price">1,450 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Baileys</div>
+              <div class="drink-desc">Ирландский крем-ликер</div>
+            </div>
+            <div class="drink-price">1,700 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Kahlúa</div>
+              <div class="drink-desc">Кофейный ликер</div>
+            </div>
+            <div class="drink-price">1,600 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Sambuca</div>
+              <div class="drink-desc">Анисовый ликер</div>
+            </div>
+            <div class="drink-price">1,500 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Triple Sec</div>
+              <div class="drink-desc">Апельсиновый ликер</div>
+            </div>
+            <div class="drink-price">1,400 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Blue Curaçao</div>
+              <div class="drink-desc">Апельсиновый ликер синего цвета</div>
+            </div>
+            <div class="drink-price">1,500 ₸</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Виски -->
+      <div class="category-section">
+        <h3 class="category-title"><i class="fas fa-whiskey-glass"></i> Виски</h3>
+        <div class="bar-grid">
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Jameson Original</div>
+              <div class="drink-desc">Ирландский виски</div>
+            </div>
+            <div class="drink-price">2,000 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Jameson Orange</div>
+              <div class="drink-desc">Апельсиновый виски</div>
+            </div>
+            <div class="drink-price">2,200 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Chivas Regal 12YO</div>
+              <div class="drink-desc">Шотландский купажированный</div>
+            </div>
+            <div class="drink-price">2,500 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Glenfiddich 12YO</div>
+              <div class="drink-desc">Односолодовый виски</div>
+            </div>
+            <div class="drink-price">4,400 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Monkey Shoulder</div>
+              <div class="drink-desc">Тройной солодовый виски</div>
+            </div>
+            <div class="drink-price">3,050 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Jack Daniel's</div>
+              <div class="drink-desc">Теннесси виски</div>
+            </div>
+            <div class="drink-price">2,300 ₸</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Джин -->
+      <div class="category-section">
+        <h3 class="category-title"><i class="fas fa-wine-glass"></i> Джин</h3>
+        <div class="bar-grid">
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Beefeater Original</div>
+              <div class="drink-desc">Лондонский сухой джин</div>
+            </div>
+            <div class="drink-price">1,600 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Beefeater Blackberry</div>
+              <div class="drink-desc">Ежевичный джин</div>
+            </div>
+            <div class="drink-price">1,900 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Beefeater Blood Orange</div>
+              <div class="drink-desc">Кровавый апельсин</div>
+            </div>
+            <div class="drink-price">1,900 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Monkey 47</div>
+              <div class="drink-desc">Премиальный немецкий джин</div>
+            </div>
+            <div class="drink-price">3,900 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Hendrick's</div>
+              <div class="drink-desc">Шотландский джин с огурцом и розой</div>
+            </div>
+            <div class="drink-price">2,800 ₸</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Ром -->
+      <div class="category-section">
+        <h3 class="category-title"><i class="fas fa-wine-bottle"></i> Ром</h3>
+        <div class="bar-grid">
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Havana Club 3 YO</div>
+              <div class="drink-desc">Белый кубинский ром</div>
+            </div>
+            <div class="drink-price">1,480 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Havana Club 7 YO</div>
+              <div class="drink-desc">Выдержанный кубинский ром</div>
+            </div>
+            <div class="drink-price">1,600 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Bacardi Carta Blanca</div>
+              <div class="drink-desc">Белый ром</div>
+            </div>
+            <div class="drink-price">1,400 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Captain Morgan Spiced Gold</div>
+              <div class="drink-desc">Пряный золотой ром</div>
+            </div>
+            <div class="drink-price">1,500 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Malibu</div>
+              <div class="drink-desc">Кокосовый ром</div>
+            </div>
+            <div class="drink-price">1,700 ₸</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Водка -->
+      <div class="category-section">
+        <h3 class="category-title"><i class="fas fa-glass-water"></i> Водка</h3>
+        <div class="bar-grid">
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Absolut Original</div>
+              <div class="drink-desc">Шведская водка</div>
+            </div>
+            <div class="drink-price">1,500 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Absolut Vanilia</div>
+              <div class="drink-desc">Ванильная водка</div>
+            </div>
+            <div class="drink-price">1,700 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Absolut Grapefruit</div>
+              <div class="drink-desc">Грейпфрутовая водка</div>
+            </div>
+            <div class="drink-price">1,700 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Grey Goose</div>
+              <div class="drink-desc">Французская премиальная водка</div>
+            </div>
+            <div class="drink-price">1,950 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Beluga</div>
+              <div class="drink-desc">Российская премиальная водка</div>
+            </div>
+            <div class="drink-price">2,200 ₸</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Текила -->
+      <div class="category-section">
+        <h3 class="category-title"><i class="fas fa-cactus"></i> Текила</h3>
+        <div class="bar-grid">
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Olmeca Silver</div>
+              <div class="drink-desc">Серебряная текила</div>
+            </div>
+            <div class="drink-price">1,490 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Olmeca Gold</div>
+              <div class="drink-desc">Золотая текила</div>
+            </div>
+            <div class="drink-price">1,490 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Jose Cuervo Especial</div>
+              <div class="drink-desc">Традиционная мексиканская текила</div>
+            </div>
+            <div class="drink-price">1,600 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Patrón Silver</div>
+              <div class="drink-desc">Премиальная серебряная текила</div>
+            </div>
+            <div class="drink-price">3,500 ₸</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Безалкогольные напитки -->
+      <div class="category-section">
+        <h3 class="category-title"><i class="fas fa-glass-water"></i> Безалкогольные напитки</h3>
+        <div class="bar-grid">
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Lemonade Fresh</div>
+              <div class="drink-desc">Домашний лимонад</div>
+            </div>
+            <div class="drink-price">1,500 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Mojito Fresh</div>
+              <div class="drink-desc">Безалкогольный мохито</div>
+            </div>
+            <div class="drink-price">1,800 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Fresh Orange Juice</div>
+              <div class="drink-desc">Свежевыжатый апельсиновый сок</div>
+            </div>
+            <div class="drink-price">1,200 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Mango Smoothie</div>
+              <div class="drink-desc">Смузи из манго и йогурта</div>
+            </div>
+            <div class="drink-price">1,700 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Berry Mix</div>
+              <div class="drink-desc">Ягодный микс с мятой</div>
+            </div>
+            <div class="drink-price">1,900 ₸</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Чай -->
+      <div class="category-section">
+        <h3 class="category-title"><i class="fas fa-mug-hot"></i> Чай</h3>
+        <div class="bar-grid">
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Чай Ташкентский</div>
+              <div class="drink-desc">Лимон, апельсин, черный и зеленый чай, мед, мята, нават</div>
+            </div>
+            <div class="drink-price">2,500 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Чай Гранатовый</div>
+              <div class="drink-desc">Яблоко, мед, зерна граната, черный чай, лимон</div>
+            </div>
+            <div class="drink-price">2,500 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Чай Малиновый</div>
+              <div class="drink-desc">Малина, черный чай, нават, тимьян, мята</div>
+            </div>
+            <div class="drink-price">2,500 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Чай Облепиховый</div>
+              <div class="drink-desc">Облепиха, мед, черный чай, апельсин, корица</div>
+            </div>
+            <div class="drink-price">2,500 ₸</div>
+          </div>
+          <div class="bar-item">
+            <div>
+              <div class="drink-name">Чай Тропический</div>
+              <div class="drink-desc">Груша, ананас, апельсин, черный чай, виноград</div>
+            </div>
+            <div class="drink-price">2,500 ₸</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Контакты</h3>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>г. Кокшетау, ул. Назарбаева, 101</div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>+7 (777) 744-44-99</div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>info@mokkos.kz</div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            <div>Вс-Чт: 10:00 - 00:00<br>Пт-Сб: 10:00 - 01:00</div>
+          </div>
+          
+          <div class="social-icons">
+            <a href="https://www.instagram.com/mokkos__/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/77777444499" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://2gis.kz/kokshetau/geo/70000001089496627" class="social-icon" target="_blank"><i class="fas fa-map-marked-alt"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Навигация</h3>
+          <ul class="footer-links">
+            <li><a href="index.html#menu">Меню</a></li>
+            <li><a href="#bar">Бар</a></li>
+            <li><a href="index.html#gallery">Интерьер</a></li>
+            <li><a href="#contact">Контакты</a></li>
+            <li><a href="order.html">Доставка</a></li>
+            <li><a href="reservation.html">Бронирование</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Условия</h3>
+          <ul class="footer-links">
+            <li>Штраф за принесенный алкоголь: 100,000 ₸</li>
+            <li>Продление времени: 20,000 ₸</li>
+            <li>Обслуживание: 10%</li>
+            <li>Минимальный заказ: 5,000 ₸</li>
+            <li>Предоплата для групп от 10 человек</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        &copy; 2025 Ресторан Mokkos. Все права защищены.
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Floating reservation button -->
+  <div class="floating-reservation" id="floating-reserve">
+    <i class="fas fa-calendar-alt"></i>
+  </div>
+  
+  <script>
+    // Плавная прокрутка
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Анимация для барных элементов
+    function animateBarItems() {
+      const barItems = document.querySelectorAll('.bar-item');
+      barItems.forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add('animate');
+        }, index * 100);
+      });
+    }
+    
+    // Инициализация анимации
+    document.addEventListener('DOMContentLoaded', function() {
+      // Анимация элементов бара
+      setTimeout(animateBarItems, 500);
+      
+      // Кнопки бронирования
+      document.getElementById('floating-reserve').addEventListener('click', function() {
+        window.location.href = 'reservation.html';
+      });
+      
+      document.getElementById('reserve-btn').addEventListener('click', function() {
+        window.location.href = 'reservation.html';
+      });
+    });
+  </script>
+</body>
+</html>

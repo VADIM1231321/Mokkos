@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mokkos | Премиальное бронирование</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <style>
+    :root {
+      --primary: #a97458;
+      --primary-dark: #8c5d44;
+      --secondary: #5c7c64;
+      --accent: #d4a86a;
+      --accent-dark: #c09550;
+      --light: #f8f4f0;
+      --dark: #3e2f1c;
+      --white: #ffffff;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #fdf9f5 0%, #f5ede4 100%);
+      color: var(--dark);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23a9745822" stroke-width="0.5"/></svg>');
+      opacity: 0.2;
+      z-index: -1;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+    
+    .header {
+      text-align: center;
+      margin: 30px 0 40px;
+      position: relative;
+    }
+    
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .header h1::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      border-radius: 3px;
+    }
+    
+    .header p {
+      font-size: 1.1rem;
+      color: var(--dark);
+      max-width: 600px;
+      margin: 20px auto 0;
+      line-height: 1.6;
+    }
+    
+    .reservation-wrapper {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .reservation-form {
+      flex: 1;
+      background: var(--white);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    
+    .reservation-form:hover {
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+    
+    .reservation-form::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--accent), var(--primary));
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--dark);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .form-group label i {
+      margin-right: 8px;
+      color: var(--primary);
+      width: 20px;
+      text-align: center;
+    }
+    
+    .input-with-icon {
+      position: relative;
+    }
+    
+    .input-with-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 1rem;
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 15px 15px 15px 45px;
+      border: 1px solid #e8e1d9;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      background: var(--light);
+      color: var(--dark);
+      transition: var(--transition);
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(169, 116, 88, 0.15);
+    }
+    
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+      padding-left: 15px;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .form-row .form-group {
+      flex: 1;
+    }
+    
+    .btn {
+      background: linear-gradient(to right, var(--accent), var(--accent-dark));
+      color: var(--dark);
+      border: none;
+      padding: 18px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 10px;
+      box-shadow: 0 5px 15px rgba(212, 168, 106, 0.3);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, var(--primary), var(--primary-dark));
+      transition: var(--transition);
+      z-index: -1;
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(212, 168, 106, 0.4);
+      color: var(--white);
+    }
+    
+    .btn:hover::before {
+      left: 0;
+    }
+    
+    .btn i {
+      margin-left: 8px;
+      transition: transform 0.3s;
+    }
+    
+    .btn:hover i {
+      transform: translateX(5px);
+    }
+    
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 10px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: var(--transition);
+      background: rgba(169, 116, 88, 0.1);
+    }
+    
+    .back-btn:hover {
+      background: rgba(169, 116, 88, 0.2);
+      transform: translateX(-5px);
+    }
+    
+    .back-btn i {
+      margin-right: 8px;
+      transition: var(--transition);
+    }
+    
+    .hall-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin: 15px 0;
+    }
+    
+    .hall-option {
+      position: relative;
+    }
+    
+    .hall-option input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .hall-option label {
+      display: block;
+      padding: 20px 15px;
+      background: var(--light);
+      border: 2px solid #e8e1d9;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hall-option label::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      transition: var(--transition);
+    }
+    
+    .hall-option input:checked + label {
+      background: rgba(169, 116, 88, 0.08);
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .hall-option input:checked + label::before {
+      background: var(--primary);
+    }
+    
+    .hall-option label i {
+      display: block;
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+    
+    .info-sidebar {
+      flex: 0 0 380px;
+      background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+      border-radius: 20px;
+      padding: 40px 30px;
+      color: var(--white);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .info-sidebar::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23ffffff22" stroke-width="0.8"/></svg>');
+      opacity: 0.3;
+    }
+    
+    .info-sidebar h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .info-sidebar h2::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+    
+    .info-item {
+      display: flex;
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .info-item i {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-right: 15px;
+      flex-shrink: 0;
+      width: 35px;
+      text-align: center;
+    }
+    
+    .info-content h3 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+    
+    .info-content p {
+      font-size: 1rem;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+    
+    .decoration {
+      position: absolute;
+      z-index: 0;
+      opacity: 0.1;
+    }
+    
+    .dec-1 {
+      top: 20px;
+      right: 20px;
+      font-size: 8rem;
+    }
+    
+    .dec-2 {
+      bottom: 20px;
+      left: 20px;
+      font-size: 6rem;
+      transform: rotate(15deg);
+    }
+    
+    .restaurant-image {
+      height: 220px;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-top: auto;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(45deg, #7a5540, #9d6b4f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 4rem;
+    }
+    
+    /* Анимации */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .reservation-form, .info-sidebar, .header {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .reservation-form { animation-delay: 0.1s; }
+    .info-sidebar { animation-delay: 0.2s; }
+    
+    /* Адаптивность */
+    @media (max-width: 900px) {
+      .reservation-wrapper {
+        flex-direction: column;
+      }
+      
+      .header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+      
+      .hall-options {
+        grid-template-columns: 1fr;
+      }
+      
+      .reservation-form {
+        padding: 30px;
+      }
+      
+      .info-sidebar {
+        flex: 1;
+        padding: 30px;
+      }
+    }
+    
+    /* Валидация */
+    .invalid input, .invalid select, .invalid textarea {
+      border-color: #e74c3c;
+      background: rgba(231, 76, 60, 0.05);
+    }
+    
+    .error-message {
+      color: #e74c3c;
+      font-size: 0.85rem;
+      margin-top: 5px;
+      display: none;
+    }
+    
+    .invalid .error-message {
+      display: block;
+    }
+    
+    /* Стиль для номера телефона */
+    .phone-hint {
+      font-size: 0.85rem;
+      color: #777;
+      margin-top: 5px;
+    }
+    
+    /* Стиль для времени работы */
+    .hours-box {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+    
+    .hours-box p {
+      margin: 5px 0;
+      font-size: 0.95rem;
+    }
+    
+    .highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Бронирование столика</h1>
+      <p>Забронируйте столик в ресторане Mokkos и насладитесь изысканной кухней в атмосфере уюта и комфорта</p>
+    </div>
+    
+    <div class="reservation-wrapper">
+      <div class="reservation-form">
+        <div class="form-group">
+          <label for="name"><i class="fas fa-user"></i> Ваше имя</label>
+          <div class="input-with-icon">
+            <i class="fas fa-user"></i>
+            <input type="text" id="name" placeholder="Иван Иванов" required>
+          </div>
+          <div class="error-message">Пожалуйста, введите ваше имя</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone"><i class="fas fa-phone"></i> Телефон</label>
+          <div class="input-with-icon">
+            <i class="fas fa-phone"></i>
+            <input type="tel" id="phone" placeholder="+7 (777) 777-77-77" required>
+          </div>
+          <div class="error-message">Пожалуйста, введите корректный номер телефона</div>
+          <div class="phone-hint">Пример: +7 (777) 777-77-77</div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="date"><i class="fas fa-calendar"></i> Дата</label>
+            <div class="input-with-icon">
+              <i class="fas fa-calendar"></i>
+              <input type="date" id="date" required>
+            </div>
+            <div class="error-message">Пожалуйста, выберите дату</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="time"><i class="fas fa-clock"></i> Время</label>
+            <div class="input-with-icon">
+              <i class="fas fa-clock"></i>
+              <input type="time" id="time" required>
+            </div>
+            <div class="error-message">Пожалуйста, выберите время</div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="guests"><i class="fas fa-users"></i> Количество гостей</label>
+          <div class="input-with-icon">
+            <i class="fas fa-users"></i>
+            <select id="guests" required>
+              <option value="" disabled selected>Выберите количество</option>
+              <option value="1">1 человек</option>
+              <option value="2">2 человека</option>
+              <option value="3">3 человека</option>
+              <option value="4">4 человека</option>
+              <option value="5">5 человек</option>
+              <option value="6">6 человек</option>
+              <option value="7">7 человек</option>
+              <option value="8">8 человек</option>
+              <option value="9">9 человек</option>
+              <option value="10">10 человек</option>
+              <option value="11">Более 10 человек</option>
+            </select>
+          </div>
+          <div class="error-message">Пожалуйста, выберите количество гостей</div>
+        </div>
+        
+        <div class="form-group">
+          <label><i class="fas fa-door-open"></i> Зал</label>
+          <div class="hall-options">
+            <div class="hall-option">
+              <input type="radio" id="main-hall" name="hall" value="main" checked>
+              <label for="main-hall">
+                <i class="fas fa-home"></i>
+                Основной зал
+              </label>
+            </div>
+            <div class="hall-option">
+              <input type="radio" id="terrace" name="hall" value="terrace">
+              <label for="terrace">
+                <i class="fas fa-umbrella-beach"></i>
+                Летняя терраса
+              </label>
+            </div>
+            <div class="hall-option">
+              <input type="radio" id="vip-hall" name="hall" value="vip">
+              <label for="vip-hall">
+                <i class="fas fa-crown"></i>
+                VIP-зал
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="notes"><i class="fas fa-sticky-note"></i> Особые пожелания</label>
+          <textarea id="notes" placeholder="Укажите дополнительные требования (аллергии, детское кресло, особые пожелания по столику и т.д.)"></textarea>
+        </div>
+        
+        <button type="submit" class="btn">Забронировать столик <i class="fas fa-arrow-right"></i></button>
+      </div>
+      
+      <div class="info-sidebar">
+        <i class="fas fa-utensils decoration dec-1"></i>
+        <i class="fas fa-wine-glass decoration dec-2"></i>
+        
+        <h2>Наши преимущества</h2>
+        
+        <div class="info-item">
+          <i class="fas fa-user-secret"></i>
+          <div class="info-content">
+            <h3>Полная конфиденциальность</h3>
+            <p>Мы гарантируем конфиденциальность вашего посещения и защиту персональных данных</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <i class="fas fa-clock"></i>
+          <div class="info-content">
+            <h3>Часы работы</h3>
+            <div class="hours-box">
+              <p><strong>Вс-Чт:</strong> <span class="highlight">10:00 - 00:00</span></p>
+              <p><strong>Пт-Сб:</strong> <span class="highlight">10:00 - 01:00</span></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <i class="fas fa-star"></i>
+          <div class="info-content">
+            <h3>Эксклюзивные места</h3>
+            <p>VIP-зал с индивидуальным обслуживанием и повышенным комфортом</p>
+          </div>
+        </div>
+        
+        <div class="restaurant-image">
+          <i class="fas fa-utensils"></i>
+        </div>
+      </div>
+    </div>
+    
+    <a href="Main.html" class="back-btn"><i class="fas fa-arrow-left"></i> Вернуться на главную</a>
+    
+    <div class="footer-note">
+      Ваши данные защищены и не будут переданы третьим лицам.
+      Подтверждение бронирования придет в SMS.
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Установка минимальной даты (сегодня)
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('date').min = today;
+      
+      // Установка времени по умолчанию (ближайший свободный час)
+      const now = new Date();
+      const nextHour = (now.getHours() + 1) % 24;
+      document.getElementById('time').value = `${nextHour.toString().padStart(2, '0')}:00`;
+      
+      // Функция валидации формы
+      function validateForm() {
+        let isValid = true;
+        const fields = ['name', 'phone', 'date', 'time', 'guests'];
+        
+        fields.forEach(field => {
+          const element = document.getElementById(field);
+          const formGroup = element.closest('.form-group');
+          
+          if (!element.value) {
+            formGroup.classList.add('invalid');
+            isValid = false;
+          } else {
+            formGroup.classList.remove('invalid');
+          }
+        });
+        
+        // Специальная валидация для телефона
+        const phone = document.getElementById('phone').value;
+        const phoneRegex = /^(\+7|8)[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
+        const phoneGroup = document.getElementById('phone').closest('.form-group');
+        
+        if (!phoneRegex.test(phone)) {
+          phoneGroup.classList.add('invalid');
+          phoneGroup.querySelector('.error-message').textContent = 'Введите корректный номер телефона';
+          isValid = false;
+        }
+        
+        return isValid;
+      }
+      
+      // Обработчик кнопки бронирования
+      document.querySelector('.reservation-form .btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        if (validateForm()) {
+          // Собираем данные
+          const name = document.getElementById('name').value;
+          const phone = document.getElementById('phone').value;
+          const date = document.getElementById('date').value;
+          const time = document.getElementById('time').value;
+          const guests = document.getElementById('guests').value;
+          const hall = document.querySelector('input[name="hall"]:checked').nextElementSibling.textContent;
+          const notes = document.getElementById('notes').value || 'нет';
+          
+          // Форматируем дату для отображения
+          const formattedDate = new Date(date).toLocaleDateString('ru-RU', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+          });
+          
+          // Формируем сообщение
+          const message = `Новое бронирование:
+Имя: ${name}
+Телефон: ${phone}
+Дата: ${formattedDate}
+Время: ${time}
+Количество гостей: ${guests}
+Зал: ${hall}
+Пожелания: ${notes}`;
+          // Кодируем для URL
+          const encodedMessage = encodeURIComponent(message);
+          
+          // Отправляем в WhatsApp
+          window.location.href = `https://wa.me/77081092652?text=${encodedMessage}`;
+          
+          // Сохраняем в Firebase (если пользователь авторизован)
+          const firebaseConfig = {
+            apiKey: "AIzaSyAKlOVV0Cmi7O0Y9SyVmvuBwPdCvII7pkU",
+            authDomain: "mokkos-9b926.firebaseapp.com",
+            databaseURL: "https://mokkos-9b926-default-rtdb.firebaseio.com",
+            projectId: "mokkos-9b926",
+            storageBucket: "mokkos-9b926.firebasestorage.app",
+            messagingSenderId: "288448409457",
+            appId: "1:288448409457:web:f4a8bec7ad4fdec5ccd0d0"
+          };
+
+          if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+          }
+          
+          const auth = firebase.auth();
+          const database = firebase.database();
+          
+          auth.onAuthStateChanged(user => {
+            if (user) {
+              const reservationData = {
+                name,
+                phone,
+                date,
+                time,
+                guests,
+                hall,
+                notes,
+                timestamp: firebase.database.ServerValue.TIMESTAMP
+              };
+              
+              database.ref('reservations/' + user.uid).push(reservationData);
+            }
+          });
+        }
+      });
+      
+      // Валидация при вводе
+      const inputs = document.querySelectorAll('input, select');
+      inputs.forEach(input => {
+        input.addEventListener('input', function() {
+          const formGroup = this.closest('.form-group');
+          if (formGroup) {
+            formGroup.classList.remove('invalid');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

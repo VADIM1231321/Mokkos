@@ -1,0 +1,112 @@
+2025-06-28 12:47:04,368 - MokkosBot - INFO - Successfully connected to Firebase.
+2025-06-28 12:47:04,372 - MokkosBot - INFO - Starting Mokkos Order Management Bot
+2025-06-28 12:47:04,783 - MokkosBot - INFO - Chat 1622498585 is accessible
+2025-06-28 12:47:04,787 - MokkosBot - INFO - Firestore listener thread started
+2025-06-28 12:47:04,790 - MokkosBot - INFO - Bot polling started
+2025-06-28 12:47:04,805 - MokkosBot - INFO - Firestore listener started for new orders
+2025-06-28 12:47:05,663 - MokkosBot - INFO - New order detected: o5uHwItwARFV3SbNgaP5
+2025-06-28 12:47:06,050 - MokkosBot - INFO - Sent notification for order o5uHwItwARFV3SbNgaP5
+2025-06-28 12:47:31,113 - MokkosBot - INFO - Status updated for order o5uHwItwARFV3SbNgaP5 to ���������
+2025-06-28 13:24:07,919 - MokkosBot - INFO - Successfully connected to Firebase.
+2025-06-28 13:24:07,946 - MokkosBot - INFO - Starting Mokkos Order Management Bot
+2025-06-28 13:24:07,953 - MokkosBot - INFO - Firestore listener thread started
+2025-06-28 13:24:07,959 - MokkosBot - INFO - Bot polling started
+2025-06-28 13:24:07,972 - MokkosBot - INFO - Firestore collection group listener started for new orders.
+2025-06-28 13:24:17,973 - MokkosBot - INFO - Successfully connected to Firebase.
+2025-06-28 13:24:17,990 - MokkosBot - INFO - Starting Mokkos Order Management Bot
+2025-06-28 13:24:17,994 - MokkosBot - INFO - Firestore listener thread started
+2025-06-28 13:24:17,996 - MokkosBot - INFO - Bot polling started
+2025-06-28 13:24:18,013 - MokkosBot - INFO - Firestore collection group listener started for new orders.
+2025-06-28 13:25:58,930 - MokkosBot - WARNING - Invalid callback_data received: status_ready_o5uHwItwARFV3SbNgaP5
+2025-06-28 13:32:50,452 - MokkosBot - INFO - Successfully connected to Firebase.
+2025-06-28 13:32:50,460 - MokkosBot - INFO - Starting Mokkos Order Management Bot
+2025-06-28 13:32:50,467 - MokkosBot - INFO - Firestore listener thread started
+2025-06-28 13:32:50,473 - MokkosBot - INFO - Bot polling started
+2025-06-28 13:32:50,485 - MokkosBot - INFO - Firestore collection group listener started for new orders.
+2025-06-28 13:32:51,258 - MokkosBot - INFO - New order detected: 0ZMn9v52lQxXSsIOrmfI from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-28 13:32:51,589 - MokkosBot - ERROR - Error sending message to chat 1622498585: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: BUTTON_DATA_INVALID
+2025-06-28 13:32:51,649 - MokkosBot - INFO - New order detected: 3f4FIqI8OCOmHGaNb8io from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-28 13:32:51,782 - MokkosBot - ERROR - Error sending message to chat 1622498585: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: BUTTON_DATA_INVALID
+2025-06-28 13:35:18,001 - MokkosBot - INFO - Successfully connected to Firebase.
+2025-06-28 13:35:18,043 - MokkosBot - INFO - Starting Mokkos Order Management Bot
+2025-06-28 13:35:18,046 - MokkosBot - INFO - Firestore listener thread started
+2025-06-28 13:35:18,048 - MokkosBot - INFO - Bot polling started
+2025-06-28 13:35:18,065 - MokkosBot - INFO - Firestore collection group listener started for new orders.
+2025-06-28 13:35:18,739 - MokkosBot - INFO - New order detected: 0ZMn9v52lQxXSsIOrmfI from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-28 13:35:19,126 - MokkosBot - INFO - Sent notification for order 0ZMn9v52lQxXSsIOrmfI
+2025-06-28 13:35:19,174 - MokkosBot - INFO - New order detected: 3f4FIqI8OCOmHGaNb8io from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-28 13:35:19,313 - MokkosBot - INFO - Sent notification for order 3f4FIqI8OCOmHGaNb8io
+2025-06-28 13:35:57,389 - MokkosBot - INFO - Status updated for order 3f4FIqI8OCOmHGaNb8io (user: 26l2192kZydVatTiCa6XVQlIVUR2) to Обрабатывается
+2025-06-28 13:36:08,047 - MokkosBot - INFO - Status updated for order 3f4FIqI8OCOmHGaNb8io (user: 26l2192kZydVatTiCa6XVQlIVUR2) to Готово к получению
+2025-06-28 13:37:09,842 - MokkosBot - INFO - New order detected: KzvazjLEoSOKBju7Ny34 from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-28 13:37:09,964 - MokkosBot - INFO - Sent notification for order KzvazjLEoSOKBju7Ny34
+2025-06-28 13:37:22,809 - MokkosBot - INFO - Status updated for order 0ZMn9v52lQxXSsIOrmfI (user: 26l2192kZydVatTiCa6XVQlIVUR2) to Готово к получению
+2025-06-28 13:37:37,818 - MokkosBot - INFO - Status updated for order 3f4FIqI8OCOmHGaNb8io (user: 26l2192kZydVatTiCa6XVQlIVUR2) to Обрабатывается
+2025-06-28 13:37:47,430 - MokkosBot - INFO - Status updated for order KzvazjLEoSOKBju7Ny34 (user: 26l2192kZydVatTiCa6XVQlIVUR2) to Готово к получению
+2025-06-28 13:37:49,589 - MokkosBot - INFO - Status updated for order 3f4FIqI8OCOmHGaNb8io (user: 26l2192kZydVatTiCa6XVQlIVUR2) to Готово к получению
+2025-06-28 14:08:22,633 - MokkosBot - INFO - Successfully connected to Firebase.
+2025-06-28 14:08:22,633 - MokkosBot - INFO - Starting Mokkos Order Management Bot
+2025-06-28 14:08:22,635 - MokkosBot - INFO - Firestore listener thread started
+2025-06-28 14:08:22,635 - MokkosBot - INFO - Bot polling started
+2025-06-28 14:08:22,653 - MokkosBot - INFO - Firestore collection group listener started for new orders.
+2025-06-28 14:09:10,397 - MokkosBot - INFO - New order detected: 0AWlquiAgSVKVexE09kn from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-28 14:09:10,799 - MokkosBot - INFO - Sent notification for order 0AWlquiAgSVKVexE09kn
+2025-06-30 22:00:02,194 - MokkosBot - INFO - Successfully connected to Firebase.
+2025-06-30 22:00:02,214 - MokkosBot - INFO - Starting Mokkos Order Management Bot
+2025-06-30 22:00:02,224 - MokkosBot - INFO - Firestore listener thread started
+2025-06-30 22:00:02,234 - MokkosBot - INFO - Bot polling started
+2025-06-30 22:00:02,320 - MokkosBot - INFO - Firestore collection group listener started for new orders.
+2025-06-30 22:00:03,404 - MokkosBot - INFO - New order detected: 0AWlquiAgSVKVexE09kn from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-30 22:00:03,913 - MokkosBot - INFO - Sent notification for order 0AWlquiAgSVKVexE09kn
+2025-06-30 22:00:03,924 - MokkosBot - INFO - New order detected: ALJ2WOgDHFpoimKLBKLx from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-30 22:00:04,183 - MokkosBot - INFO - Sent notification for order ALJ2WOgDHFpoimKLBKLx
+2025-06-30 22:00:04,193 - MokkosBot - INFO - New order detected: C239X0tlqvPF0KW83tMI from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-30 22:00:04,453 - MokkosBot - INFO - Sent notification for order C239X0tlqvPF0KW83tMI
+2025-06-30 22:00:04,468 - MokkosBot - INFO - New order detected: trKQ8BUJWlMGXGK6Wjxc from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-30 22:00:04,713 - MokkosBot - INFO - Sent notification for order trKQ8BUJWlMGXGK6Wjxc
+2025-06-30 22:00:34,507 - MokkosBot - INFO - New order detected: VrBxb5FMDp2Gu0N0zBL5 from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-30 22:00:34,664 - MokkosBot - INFO - Sent notification for order VrBxb5FMDp2Gu0N0zBL5
+2025-06-30 22:01:07,834 - MokkosBot - INFO - Status updated for order VrBxb5FMDp2Gu0N0zBL5 (user: 26l2192kZydVatTiCa6XVQlIVUR2) to Готовится
+2025-06-30 22:03:34,998 - MokkosBot - INFO - New order detected: PiOFUV3wKpr0540UnrpZ from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-30 22:03:35,204 - MokkosBot - INFO - Sent notification for order PiOFUV3wKpr0540UnrpZ
+2025-06-30 22:10:02,249 - MokkosBot - INFO - Successfully connected to Firebase.
+2025-06-30 22:10:02,294 - MokkosBot - INFO - Starting Mokkos Order Management Bot
+2025-06-30 22:10:02,304 - MokkosBot - INFO - Firestore listener thread started
+2025-06-30 22:10:02,311 - MokkosBot - INFO - Bot polling started
+2025-06-30 22:10:02,314 - MokkosBot - INFO - Firestore collection group listener started for new orders.
+2025-06-30 22:10:03,194 - MokkosBot - INFO - New order detected: 0AWlquiAgSVKVexE09kn from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-30 22:10:03,744 - MokkosBot - INFO - Sent notification for order 0AWlquiAgSVKVexE09kn
+2025-06-30 22:10:03,764 - MokkosBot - INFO - New order detected: ALJ2WOgDHFpoimKLBKLx from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-30 22:10:04,004 - MokkosBot - INFO - Sent notification for order ALJ2WOgDHFpoimKLBKLx
+2025-06-30 22:10:04,054 - MokkosBot - INFO - New order detected: C239X0tlqvPF0KW83tMI from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-30 22:10:04,234 - MokkosBot - INFO - Sent notification for order C239X0tlqvPF0KW83tMI
+2025-06-30 22:10:04,304 - MokkosBot - INFO - New order detected: PiOFUV3wKpr0540UnrpZ from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-30 22:10:04,494 - MokkosBot - INFO - Sent notification for order PiOFUV3wKpr0540UnrpZ
+2025-06-30 22:10:04,564 - MokkosBot - INFO - New order detected: trKQ8BUJWlMGXGK6Wjxc from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-30 22:10:04,714 - MokkosBot - INFO - Sent notification for order trKQ8BUJWlMGXGK6Wjxc
+2025-06-30 22:11:44,929 - MokkosBot - INFO - Successfully connected to Firebase.
+2025-06-30 22:11:45,004 - MokkosBot - INFO - Starting Mokkos Order Management Bot
+2025-06-30 22:11:45,014 - MokkosBot - INFO - Listener starting. Will only process orders created after 2025-06-30T17:11:45.014629+00:00
+2025-06-30 22:11:45,014 - MokkosBot - INFO - Firestore listener thread started
+2025-06-30 22:11:45,034 - MokkosBot - INFO - Bot polling started
+2025-06-30 22:11:45,044 - MokkosBot - INFO - Firestore collection group listener started for new orders.
+2025-06-30 22:12:00,424 - MokkosBot - INFO - Successfully connected to Firebase.
+2025-06-30 22:12:00,428 - MokkosBot - INFO - Starting Mokkos Order Management Bot
+2025-06-30 22:12:00,434 - MokkosBot - INFO - Listener starting. Will only process orders created after 2025-06-30T17:12:00.434541+00:00
+2025-06-30 22:12:00,434 - MokkosBot - INFO - Firestore listener thread started
+2025-06-30 22:12:00,444 - MokkosBot - INFO - Bot polling started
+2025-06-30 22:12:00,454 - MokkosBot - INFO - Firestore collection group listener started for new orders.
+2025-06-30 22:13:39,814 - MokkosBot - INFO - Successfully connected to Firebase.
+2025-06-30 22:13:39,869 - MokkosBot - INFO - Starting Mokkos Order Management Bot
+2025-06-30 22:13:39,874 - MokkosBot - INFO - Listener starting. Will only process orders created after 2025-06-30T17:13:39.874287+00:00
+2025-06-30 22:13:39,874 - MokkosBot - INFO - Firestore listener thread started
+2025-06-30 22:13:39,894 - MokkosBot - INFO - Bot polling started
+2025-06-30 22:13:39,904 - MokkosBot - INFO - Firestore collection group listener started for new orders.
+2025-06-30 22:29:12,984 - MokkosBot - INFO - Successfully connected to Firebase.
+2025-06-30 22:29:12,992 - MokkosBot - INFO - Starting Mokkos Order Management Bot
+2025-06-30 22:29:12,999 - MokkosBot - INFO - Listener starting. Will only process orders created after 2025-06-30T17:29:12.999181+00:00
+2025-06-30 22:29:12,999 - MokkosBot - INFO - Firestore listener thread started
+2025-06-30 22:29:13,011 - MokkosBot - INFO - Bot polling started
+2025-06-30 22:29:13,022 - MokkosBot - INFO - Firestore collection group listener started for new orders.
+2025-06-30 22:29:46,645 - MokkosBot - INFO - New order detected: 4RqRRELWi0QQNLynQZmy from user 26l2192kZydVatTiCa6XVQlIVUR2
+2025-06-30 22:29:47,227 - MokkosBot - INFO - Sent notification for order 4RqRRELWi0QQNLynQZmy
